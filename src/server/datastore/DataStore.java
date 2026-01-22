@@ -33,7 +33,7 @@ public class DataStore {
     private void initData() {
         users.add(new User("admin", "admin", "ADMIN"));
         users.add(new User("user", "user", "USER"));
-        
+
         // Add some initial tickets
         tickets.add(new Ticket(1, "Problema de red", "No puedo acceder a internet", "user"));
         tickets.add(new Ticket(2, "Error en login", "La contraseña no funciona", "user"));
@@ -58,7 +58,8 @@ public class DataStore {
     }
 
     public List<Ticket> getAllTickets() {
-        // Return a copy to avoid concurrent modification exceptions during iteration outside
+        // Return a copy to avoid concurrent modification exceptions during iteration
+        // outside
         synchronized (tickets) {
             return new ArrayList<>(tickets);
         }

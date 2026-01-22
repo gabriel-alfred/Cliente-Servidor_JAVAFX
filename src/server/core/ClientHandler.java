@@ -70,7 +70,7 @@ public class ClientHandler implements Runnable {
                     response = new Message(Protocol.STATUS_UNAUTHORIZED, "Debe iniciar sesión");
                 }
                 break;
-                
+
             case Protocol.CMD_LOGOUT:
                 running = false;
                 response = new Message(Protocol.STATUS_OK, "Adios");
@@ -83,9 +83,12 @@ public class ClientHandler implements Runnable {
 
     private void closeConnection() {
         try {
-            if (out != null) out.close();
-            if (in != null) in.close();
-            if (socket != null) socket.close();
+            if (out != null)
+                out.close();
+            if (in != null)
+                in.close();
+            if (socket != null)
+                socket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
