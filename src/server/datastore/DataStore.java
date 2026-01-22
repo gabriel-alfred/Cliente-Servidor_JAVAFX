@@ -10,9 +10,9 @@ import java.util.Optional;
 
 public class DataStore {
     private static DataStore instance;
-
     private final List<User> users;
     private final List<Ticket> tickets;
+    private int nextTicketId = 1;
 
     private DataStore() {
         // Initialize thread-safe lists
@@ -34,9 +34,9 @@ public class DataStore {
         users.add(new User("admin", "admin", "ADMIN"));
         users.add(new User("user", "user", "USER"));
         
-        // Add some initial tickets
-        tickets.add(new Ticket(1, "Problema de red", "No puedo acceder a internet", "user"));
-        tickets.add(new Ticket(2, "Error en login", "La contraseña no funciona", "user"));
+        // Add some initial tickets using helper
+        addTicket(new Ticket(0, "Problema de red", "No puedo acceder a internet", "user"));
+        addTicket(new Ticket(0, "Error en login", "La contraseña no funciona", "user"));
     }
 
     // User methods
@@ -54,7 +54,26 @@ public class DataStore {
 
     // Ticket methods
     public void addTicket(Ticket ticket) {
-        tickets.add(ticket);
+        synchronized (tickets) {
+            if (ticket.getId() <= 0) {
+                ticket.setId(nextTicketId++);
+            } else if (ticket.getId() >= nextTicketId) {
+                nextTicketId = ticket.getId() + 1;
+            }
+            tickets.add(ticket);
+        }
+    }
+
+    public boolean updateTicket(Ticket updatedTicket) {
+        synchronized (tickets) {
+            for (int i = 0; i < tickets.size(); i++) {
+                if (tickets.get(i).getId() == updatedTicket.getId()) {
+                    tickets.set(i, updatedTicket);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public List<Ticket> getAllTickets() {
