@@ -2,6 +2,7 @@ package server.core;
 
 import common.Protocol;
 import common.model.Message;
+import common.model.Ticket;
 import common.model.User;
 import server.service.AuthService;
 import server.datastore.DataStore;
@@ -70,7 +71,34 @@ public class ClientHandler implements Runnable {
                     response = new Message(Protocol.STATUS_UNAUTHORIZED, "Debe iniciar sesión");
                 }
                 break;
-                
+
+            case Protocol.CMD_CREATE_TICKET:
+                if (currentUser != null) {
+                    Ticket newTicket = (Ticket) request.getObject();
+                    newTicket.setOwner(currentUser.getUsername()); // Ensure owner is current user
+                    DataStore.getInstance().addTicket(newTicket);
+                    response = new Message(Protocol.STATUS_OK, newTicket);
+                    System.out.println("Ticket creado por: " + currentUser.getUsername());
+                } else {
+                    response = new Message(Protocol.STATUS_UNAUTHORIZED, "Debe iniciar sesión");
+                }
+                break;
+
+            case Protocol.CMD_UPDATE_TICKET:
+                if (currentUser != null) {
+                    Ticket updatedTicket = (Ticket) request.getObject();
+                    boolean success = DataStore.getInstance().updateTicket(updatedTicket);
+                    if (success) {
+                        response = new Message(Protocol.STATUS_OK, updatedTicket);
+                        System.out.println("Ticket actualizado: " + updatedTicket.getId());
+                    } else {
+                        response = new Message(Protocol.STATUS_ERROR, "No se pudo encontrar el ticket");
+                    }
+                } else {
+                    response = new Message(Protocol.STATUS_UNAUTHORIZED, "Debe iniciar sesión");
+                }
+                break;
+
             case Protocol.CMD_LOGOUT:
                 running = false;
                 response = new Message(Protocol.STATUS_OK, "Adios");
@@ -83,9 +111,12 @@ public class ClientHandler implements Runnable {
 
     private void closeConnection() {
         try {
-            if (out != null) out.close();
-            if (in != null) in.close();
-            if (socket != null) socket.close();
+            if (out != null)
+                out.close();
+            if (in != null)
+                in.close();
+            if (socket != null)
+                socket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
