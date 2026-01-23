@@ -53,8 +53,13 @@ public class DataStore {
     }
 
     // Ticket methods
-    public void addTicket(Ticket ticket) {
-        tickets.add(ticket);
+    public Ticket addTicket(Ticket ticket) {
+        synchronized (tickets) {
+            int maxId = tickets.stream().mapToInt(Ticket::getId).max().orElse(0);
+            ticket.setId(maxId + 1);
+            tickets.add(ticket);
+            return ticket;
+        }
     }
 
     public List<Ticket> getAllTickets() {

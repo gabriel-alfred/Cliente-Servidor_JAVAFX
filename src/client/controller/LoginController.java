@@ -89,8 +89,8 @@ public class LoginController {
             Parent root = loader.load();
             
             // You might want to pass the user to the dashboard controller here
-            // DashboardController controller = loader.getController();
-            // controller.setUser(loggedUser);
+            DashboardController controller = loader.getController();
+            controller.initData(loggedUser);
 
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.setTitle("Dashboard");

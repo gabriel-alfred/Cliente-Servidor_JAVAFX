@@ -71,6 +71,18 @@ public class ClientHandler implements Runnable {
                 }
                 break;
 
+            case Protocol.CMD_CREATE_TICKET:
+                if (currentUser != null) {
+                    Ticket newTicket = (Ticket) request.getObject();
+                    // Set owner if not set, or enforce it
+                    newTicket.setOwner(currentUser.getUsername());
+                    DataStore.getInstance().addTicket(newTicket);
+                    response = new Message(Protocol.STATUS_OK, "Ticket creado correctamente");
+                } else {
+                    response = new Message(Protocol.STATUS_UNAUTHORIZED, "Debe iniciar sesión");
+                }
+                break;
+
             case Protocol.CMD_LOGOUT:
                 running = false;
                 response = new Message(Protocol.STATUS_OK, "Adios");
