@@ -3,6 +3,7 @@ package server.core;
 import common.Protocol;
 import common.model.Message;
 import common.model.User;
+import common.model.Ticket;
 import server.service.AuthService;
 import server.datastore.DataStore;
 

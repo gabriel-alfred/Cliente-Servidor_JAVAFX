@@ -65,7 +65,7 @@ public class LoginController {
             if (response.getCommand() == Protocol.STATUS_OK) {
                 User loggedUser = (User) response.getObject();
                 System.out.println("Login exitoso: " + loggedUser.getUsername());
-                loadDashboard();
+                loadDashboard(loggedUser);
             } else {
                 String errorMsg = (String) response.getObject();
                 showError(errorMsg);
@@ -82,7 +82,7 @@ public class LoginController {
         errorLabel.setVisible(true);
     }
 
-    private void loadDashboard() {
+    private void loadDashboard(User user) {
         try {
             // Assumes dashboard.fxml exists in view folder
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/view/dashboard.fxml"));
@@ -90,7 +90,7 @@ public class LoginController {
             
             // You might want to pass the user to the dashboard controller here
             DashboardController controller = loader.getController();
-            controller.initData(loggedUser);
+            controller.initData(user);
 
             Stage stage = (Stage) loginButton.getScene().getWindow();
             stage.setTitle("Dashboard");
