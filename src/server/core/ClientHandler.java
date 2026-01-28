@@ -6,6 +6,7 @@ import common.model.User;
 import common.model.Ticket;
 import server.service.AuthService;
 import server.datastore.DataStore;
+import server.util.ServerLogger;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -15,14 +16,18 @@ import java.net.Socket;
 public class ClientHandler implements Runnable {
     private final Socket socket;
     private final AuthService authService;
+    private final ServerLogger logger;
     private ObjectOutputStream out;
     private ObjectInputStream in;
     private User currentUser;
     private boolean running = true;
+    private String clientAddress;
 
     public ClientHandler(Socket socket) {
         this.socket = socket;
         this.authService = new AuthService();
+        this.logger = ServerLogger.getInstance();
+        this.clientAddress = socket.getInetAddress().getHostAddress();
     }
 
     @Override
@@ -31,18 +36,18 @@ public class ClientHandler implements Runnable {
             out = new ObjectOutputStream(socket.getOutputStream());
             in = new ObjectInputStream(socket.getInputStream());
 
-            System.out.println("Cliente conectado: " + socket.getInetAddress());
+            logger.info("Cliente conectado: " + clientAddress);
 
             while (running) {
                 try {
                     Message request = (Message) in.readObject();
                     handleRequest(request);
                 } catch (ClassNotFoundException e) {
-                    System.err.println("Error al leer objeto: " + e.getMessage());
+                    logger.error("Error al leer objeto desde " + clientAddress, e);
                 }
             }
         } catch (IOException e) {
-            System.out.println("Cliente desconectado: " + socket.getInetAddress());
+            logger.info("Cliente desconectado: " + clientAddress);
         } finally {
             closeConnection();
         }
@@ -54,21 +59,27 @@ public class ClientHandler implements Runnable {
         switch (request.getCommand()) {
             case Protocol.CMD_LOGIN:
                 User loginUser = (User) request.getObject();
+                logger.info("Intento de login: " + loginUser.getUsername() + " desde " + clientAddress);
+                
                 User authenticatedUser = authService.login(loginUser.getUsername(), loginUser.getPassword());
                 if (authenticatedUser != null) {
                     currentUser = authenticatedUser;
                     response = new Message(Protocol.STATUS_OK, authenticatedUser);
-                    System.out.println("Usuario logueado: " + currentUser.getUsername());
+                    logger.info("Login exitoso: " + currentUser.getUsername() + " (" + currentUser.getRole() + ")");
                 } else {
                     response = new Message(Protocol.STATUS_UNAUTHORIZED, Protocol.ERR_LOGIN_FAILED);
+                    logger.warning("Login fallido para usuario: " + loginUser.getUsername() + " desde " + clientAddress);
                 }
                 break;
 
             case Protocol.CMD_LIST_TICKETS:
                 if (currentUser != null) {
+                    int ticketCount = DataStore.getInstance().getAllTickets().size();
                     response = new Message(Protocol.STATUS_OK, DataStore.getInstance().getAllTickets());
+                    logger.info("Usuario " + currentUser.getUsername() + " listó " + ticketCount + " tickets");
                 } else {
                     response = new Message(Protocol.STATUS_UNAUTHORIZED, "Debe iniciar sesión");
+                    logger.warning("Intento de listar tickets sin autenticación desde " + clientAddress);
                 }
                 break;
 
@@ -77,16 +88,39 @@ public class ClientHandler implements Runnable {
                     Ticket newTicket = (Ticket) request.getObject();
                     // Set owner if not set, or enforce it
                     newTicket.setOwner(currentUser.getUsername());
-                    DataStore.getInstance().addTicket(newTicket);
+                    Ticket createdTicket = DataStore.getInstance().addTicket(newTicket);
                     response = new Message(Protocol.STATUS_OK, "Ticket creado correctamente");
+                    logger.info("Ticket creado por " + currentUser.getUsername() + 
+                               ": ID=" + createdTicket.getId() + ", Título='" + createdTicket.getTitle() + "'");
                 } else {
                     response = new Message(Protocol.STATUS_UNAUTHORIZED, "Debe iniciar sesión");
+                    logger.warning("Intento de crear ticket sin autenticación desde " + clientAddress);
+                }
+                break;
+
+            case Protocol.CMD_UPDATE_TICKET:
+                if (currentUser != null) {
+                    Ticket updatedTicket = (Ticket) request.getObject();
+                    DataStore.getInstance().updateTicket(updatedTicket);
+                    response = new Message(Protocol.STATUS_OK, "Ticket actualizado correctamente");
+                    logger.info("Ticket actualizado por " + currentUser.getUsername() + 
+                               ": ID=" + updatedTicket.getId() + ", Estado=" + updatedTicket.getStatus());
+                } else {
+                    response = new Message(Protocol.STATUS_UNAUTHORIZED, "Debe iniciar sesión");
+                    logger.warning("Intento de actualizar ticket sin autenticación desde " + clientAddress);
                 }
                 break;
 
             case Protocol.CMD_LOGOUT:
+                if (currentUser != null) {
+                    logger.info("Usuario " + currentUser.getUsername() + " cerró sesión");
+                }
                 running = false;
                 response = new Message(Protocol.STATUS_OK, "Adios");
+                break;
+
+            default:
+                logger.warning("Comando desconocido recibido desde " + clientAddress + ": " + request.getCommand());
                 break;
         }
 
@@ -96,6 +130,12 @@ public class ClientHandler implements Runnable {
 
     private void closeConnection() {
         try {
+            if (currentUser != null) {
+                logger.info("Cerrando conexión para usuario: " + currentUser.getUsername());
+            } else {
+                logger.info("Cerrando conexión desde: " + clientAddress);
+            }
+            
             if (out != null)
                 out.close();
             if (in != null)
@@ -103,7 +143,7 @@ public class ClientHandler implements Runnable {
             if (socket != null)
                 socket.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Error al cerrar conexión desde " + clientAddress, e);
         }
     }
 }
