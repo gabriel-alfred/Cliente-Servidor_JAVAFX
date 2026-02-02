@@ -45,10 +45,30 @@ public class LoginController {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        if (username.isEmpty() || password.isEmpty()) {
+
+        boolean isValid = true;
+
+        if (username.isEmpty()) {
+            usernameField.getStyleClass().add("error-field");
+            isValid = false;
+        }
+        if (password.isEmpty()) {
+            passwordField.getStyleClass().add("error-field");
+            isValid = false;
+        }
+
+        if (!isValid) {
             showError("Por favor llene todos los campos.");
+            // Add listeners to remove error style on typing
+            usernameField.textProperty().addListener((observable, oldValue, newValue) -> {
+                usernameField.getStyleClass().remove("error-field");
+            });
+            passwordField.textProperty().addListener((observable, oldValue, newValue) -> {
+                passwordField.getStyleClass().remove("error-field");
+            });
             return;
         }
+
 
         loginButton.setDisable(true);
         errorLabel.setVisible(false);

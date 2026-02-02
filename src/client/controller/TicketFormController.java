@@ -81,10 +81,31 @@ public class TicketFormController implements Initializable {
     String title = titleField.getText();
     String desc = descField.getText();
 
-    if (title.isEmpty() || desc.isEmpty()) {
+
+    boolean isValid = true;
+
+    if (title.isEmpty()) {
+      titleField.getStyleClass().add("error-field");
+      isValid = false;
+    }
+    if (desc.isEmpty()) {
+      descField.getStyleClass().add("error-field");
+      isValid = false;
+    }
+
+    if (!isValid) {
+      // Add listeners to remove error style on typing
+      titleField.textProperty().addListener((observable, oldValue, newValue) -> {
+        titleField.getStyleClass().remove("error-field");
+      });
+      descField.textProperty().addListener((observable, oldValue, newValue) -> {
+        descField.getStyleClass().remove("error-field");
+      });
+      // Optional: keep alert or rely on visual cues. Keeping it for now as per plan.
       showAlert("Error", "Por favor completa todos los campos.");
       return;
     }
+
 
     saveButton.setDisable(true);
 
