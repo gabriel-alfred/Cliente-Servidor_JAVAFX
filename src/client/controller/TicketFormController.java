@@ -7,6 +7,7 @@ import common.model.Ticket;
 import common.model.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,116 +26,127 @@ import java.util.ResourceBundle;
 
 public class TicketFormController implements Initializable {
 
-    @FXML
-    private Label titleLabel;
+  @FXML
+  private Label titleLabel;
 
-    @FXML
-    private TextField titleField;
+  @FXML
+  private TextField titleField;
 
-    @FXML
+  @FXML
   private TextArea descField;
 
-    @FXML
-    private Button saveButton;
-    
-    @FXML
- private VBox statusContainer;
-    
-    @FXML
-    private ComboBox<Ticket.Status> statusCombo;
+  @FXML
+  private Button saveButton;
 
-    private User currentUser;
+  @FXML
+  private VBox statusContainer;
+
+  @FXML
+  private ComboBox<Ticket.Status> statusCombo;
+
+  private User currentUser;
   private DashboardController parentController;
-    private Ticket editingTicket;
-    private boolean isEditMode = false;
+  private Ticket editingTicket;
+  private boolean isEditMode = false;
 
- @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // Populate status combo
-        statusCombo.setItems(FXCollections.observableArrayList(Ticket.Status.values()));
-    }
-
-    public void setContext(User user, DashboardController parent, Ticket ticketToEdit) {
-  this.currentUser = user;
-        this.parentController = parent;
-        this.editingTicket = ticketToEdit;
-        
-  if (ticketToEdit != null) {
-        isEditMode = true;
-     titleLabel.setText("Editar Ticket");
-  titleField.setText(ticketToEdit.getTitle());
-   descField.setText(ticketToEdit.getDescription());
-   statusCombo.setValue(ticketToEdit.getStatus());
-    statusContainer.setVisible(true);
-         statusContainer.setManaged(true);
-    saveButton.setText("Actualizar Ticket");
-        } else {
-            isEditMode = false;
-            titleLabel.setText("Crear Nuevo Ticket");
-       saveButton.setText("Guardar Ticket");
+  @Override
+  public void initialize(URL location, ResourceBundle resources) {
+    // Populate status combo
+    statusCombo.setItems(FXCollections.observableArrayList(Ticket.Status.values()));
   }
+
+  public void setContext(User user, DashboardController parent, Ticket ticketToEdit) {
+    this.currentUser = user;
+    this.parentController = parent;
+    this.editingTicket = ticketToEdit;
+
+    if (ticketToEdit != null) {
+      isEditMode = true;
+      titleLabel.setText("Editar Ticket");
+      titleField.setText(ticketToEdit.getTitle());
+      descField.setText(ticketToEdit.getDescription());
+      statusCombo.setValue(ticketToEdit.getStatus());
+      statusContainer.setVisible(true);
+      statusContainer.setManaged(true);
+      saveButton.setText("Actualizar Ticket");
+    } else {
+      isEditMode = false;
+      titleLabel.setText("Crear Nuevo Ticket");
+      saveButton.setText("Guardar Ticket");
+    }
+  }
+
+  @FXML
+  void handleSave(ActionEvent event) {
+    String title = titleField.getText();
+    String desc = descField.getText();
+
+    if (title.isEmpty() || desc.isEmpty()) {
+      showAlert("Error", "Por favor completa todos los campos.");
+      return;
     }
 
-    @FXML
-    void handleSave(ActionEvent event) {
-        String title = titleField.getText();
- String desc = descField.getText();
+    saveButton.setDisable(true);
 
-        if (title.isEmpty() || desc.isEmpty()) {
-          showAlert("Error", "Por favor completa todos los campos.");
-            return;
+    Task<Message> saveTask = new Task<Message>() {
+      @Override
+      protected Message call() throws Exception {
+        SocketClient client = SocketClient.getInstance();
+        Message request;
+
+        if (isEditMode) {
+          editingTicket.setTitle(title);
+          editingTicket.setDescription(desc);
+          editingTicket.setStatus(statusCombo.getValue());
+          request = new Message(Protocol.CMD_UPDATE_TICKET, editingTicket);
+        } else {
+          Ticket newTicket = new Ticket(0, title, desc, currentUser.getUsername());
+          request = new Message(Protocol.CMD_CREATE_TICKET, newTicket);
         }
 
-        try {
- SocketClient client = SocketClient.getInstance();
-  Message response;
-
- if (isEditMode) {
-        // Update existing ticket
-     editingTicket.setTitle(title);
-       editingTicket.setDescription(desc);
-                editingTicket.setStatus(statusCombo.getValue());
-                
-            Message request = new Message(Protocol.CMD_UPDATE_TICKET, editingTicket);
-     client.sendMessage(request);
-            response = client.receiveMessage();
-           
-            } else {
-     // Create new ticket
-    Ticket newTicket = new Ticket(0, title, desc, currentUser.getUsername());
-    Message request = new Message(Protocol.CMD_CREATE_TICKET, newTicket);
         client.sendMessage(request);
- response = client.receiveMessage();
-  }
-
-            if (response.getCommand() == Protocol.STATUS_OK) {
-     parentController.refreshTickets();
-           closeWindow();
-          } else {
-  String error = (String) response.getObject();
-       showAlert("Error", "No se pudo guardar el ticket: " + error);
+        return client.receiveMessage();
       }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-            showAlert("Error de Conexión", e.getMessage());
-  }
-    }
+    };
 
-    @FXML
-    void handleCancel(ActionEvent event) {
+    saveTask.setOnSucceeded(e -> {
+      Message response = saveTask.getValue();
+      saveButton.setDisable(false);
+
+      if (response.getCommand() == Protocol.STATUS_OK) {
+        parentController.refreshTickets();
         closeWindow();
-    }
+      } else {
+        String error = (String) response.getObject();
+        showAlert("Error", "No se pudo guardar el ticket: " + error);
+      }
+    });
 
-    private void closeWindow() {
-        Stage stage = (Stage) saveButton.getScene().getWindow();
-        stage.close();
-    }
+    saveTask.setOnFailed(e -> {
+      saveButton.setDisable(false);
+      Throwable ex = saveTask.getException();
+      ex.printStackTrace();
+      showAlert("Error de Conexión", ex.getMessage());
+    });
 
-    private void showAlert(String title, String content) {
-      Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
+    new Thread(saveTask).start();
+  }
+
+  @FXML
+  void handleCancel(ActionEvent event) {
+    closeWindow();
+  }
+
+  private void closeWindow() {
+    Stage stage = (Stage) saveButton.getScene().getWindow();
+    stage.close();
+  }
+
+  private void showAlert(String title, String content) {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle(title);
     alert.setHeaderText(null);
-        alert.setContentText(content);
- alert.showAndWait();
-    }
+    alert.setContentText(content);
+    alert.showAndWait();
+  }
 }
