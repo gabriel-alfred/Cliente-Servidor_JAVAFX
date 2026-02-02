@@ -5,6 +5,7 @@ import common.Protocol;
 import common.model.Message;
 import common.model.User;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -49,32 +50,45 @@ public class LoginController {
             return;
         }
 
-        // Connect if not already connected
-        if (!socketClient.connect()) {
-            showError("No se pudo conectar al servidor.");
-            return;
-        }
+        loginButton.setDisable(true);
+        errorLabel.setVisible(false);
 
-        try {
-            User credentials = new User(username, password, null);
-            Message loginRequest = new Message(Protocol.CMD_LOGIN, credentials);
-            
-            socketClient.sendMessage(loginRequest);
-            Message response = socketClient.receiveMessage();
+        Task<User> loginTask = new Task<User>() {
+            @Override
+            protected User call() throws Exception {
+                if (!socketClient.connect()) {
+                    throw new Exception("No se pudo conectar al servidor.");
+                }
 
-            if (response.getCommand() == Protocol.STATUS_OK) {
-                User loggedUser = (User) response.getObject();
-                System.out.println("Login exitoso: " + loggedUser.getUsername());
-                loadDashboard(loggedUser);
-            } else {
-                String errorMsg = (String) response.getObject();
-                showError(errorMsg);
+                User credentials = new User(username, password, null);
+                Message loginRequest = new Message(Protocol.CMD_LOGIN, credentials);
+                socketClient.sendMessage(loginRequest);
+
+                Message response = socketClient.receiveMessage();
+
+                if (response.getCommand() == Protocol.STATUS_OK) {
+                    return (User) response.getObject();
+                } else {
+                    throw new Exception((String) response.getObject());
+                }
             }
+        };
 
-        } catch (IOException | ClassNotFoundException e) {
-            showError("Error de comunicación: " + e.getMessage());
-            e.printStackTrace();
-        }
+        loginTask.setOnSucceeded(e -> {
+            User loggedUser = loginTask.getValue();
+            loginButton.setDisable(false);
+            System.out.println("Login exitoso: " + loggedUser.getUsername());
+            loadDashboard(loggedUser);
+        });
+
+        loginTask.setOnFailed(e -> {
+            loginButton.setDisable(false);
+            Throwable ex = loginTask.getException();
+            showError(ex.getMessage());
+            ex.printStackTrace();
+        });
+
+        new Thread(loginTask).start();
     }
 
     private void showError(String message) {
@@ -87,7 +101,7 @@ public class LoginController {
             // Assumes dashboard.fxml exists in view folder
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/view/dashboard.fxml"));
             Parent root = loader.load();
-            
+
             // You might want to pass the user to the dashboard controller here
             DashboardController controller = loader.getController();
             controller.initData(user);
