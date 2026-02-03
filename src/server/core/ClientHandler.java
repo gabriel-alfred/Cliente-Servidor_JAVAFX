@@ -5,6 +5,7 @@ import common.model.Message;
 import common.model.User;
 import common.model.Ticket;
 import server.service.AuthService;
+import server.service.ReportService;
 import server.datastore.DataStore;
 import server.util.ServerLogger;
 
@@ -16,6 +17,7 @@ import java.net.Socket;
 public class ClientHandler implements Runnable {
     private final Socket socket;
     private final AuthService authService;
+    private final ReportService reportService;
     private final ServerLogger logger;
     private ObjectOutputStream out;
     private ObjectInputStream in;
@@ -26,6 +28,7 @@ public class ClientHandler implements Runnable {
     public ClientHandler(Socket socket) {
         this.socket = socket;
         this.authService = new AuthService();
+        this.reportService = new ReportService();
         this.logger = ServerLogger.getInstance();
         this.clientAddress = socket.getInetAddress().getHostAddress();
     }
@@ -60,7 +63,7 @@ public class ClientHandler implements Runnable {
             case Protocol.CMD_LOGIN:
                 User loginUser = (User) request.getObject();
                 logger.info("Intento de login: " + loginUser.getUsername() + " desde " + clientAddress);
-                
+
                 User authenticatedUser = authService.login(loginUser.getUsername(), loginUser.getPassword());
                 if (authenticatedUser != null) {
                     currentUser = authenticatedUser;
@@ -68,7 +71,8 @@ public class ClientHandler implements Runnable {
                     logger.info("Login exitoso: " + currentUser.getUsername() + " (" + currentUser.getRole() + ")");
                 } else {
                     response = new Message(Protocol.STATUS_UNAUTHORIZED, Protocol.ERR_LOGIN_FAILED);
-                    logger.warning("Login fallido para usuario: " + loginUser.getUsername() + " desde " + clientAddress);
+                    logger.warning(
+                            "Login fallido para usuario: " + loginUser.getUsername() + " desde " + clientAddress);
                 }
                 break;
 
@@ -90,8 +94,8 @@ public class ClientHandler implements Runnable {
                     newTicket.setOwner(currentUser.getUsername());
                     Ticket createdTicket = DataStore.getInstance().addTicket(newTicket);
                     response = new Message(Protocol.STATUS_OK, "Ticket creado correctamente");
-                    logger.info("Ticket creado por " + currentUser.getUsername() + 
-                               ": ID=" + createdTicket.getId() + ", Título='" + createdTicket.getTitle() + "'");
+                    logger.info("Ticket creado por " + currentUser.getUsername() +
+                            ": ID=" + createdTicket.getId() + ", Título='" + createdTicket.getTitle() + "'");
                 } else {
                     response = new Message(Protocol.STATUS_UNAUTHORIZED, "Debe iniciar sesión");
                     logger.warning("Intento de crear ticket sin autenticación desde " + clientAddress);
@@ -103,8 +107,8 @@ public class ClientHandler implements Runnable {
                     Ticket updatedTicket = (Ticket) request.getObject();
                     DataStore.getInstance().updateTicket(updatedTicket);
                     response = new Message(Protocol.STATUS_OK, "Ticket actualizado correctamente");
-                    logger.info("Ticket actualizado por " + currentUser.getUsername() + 
-                               ": ID=" + updatedTicket.getId() + ", Estado=" + updatedTicket.getStatus());
+                    logger.info("Ticket actualizado por " + currentUser.getUsername() +
+                            ": ID=" + updatedTicket.getId() + ", Estado=" + updatedTicket.getStatus());
                 } else {
                     response = new Message(Protocol.STATUS_UNAUTHORIZED, "Debe iniciar sesión");
                     logger.warning("Intento de actualizar ticket sin autenticación desde " + clientAddress);
@@ -117,6 +121,22 @@ public class ClientHandler implements Runnable {
                 }
                 running = false;
                 response = new Message(Protocol.STATUS_OK, "Adios");
+                break;
+
+            case Protocol.CMD_GENERATE_REPORT:
+                if (currentUser != null) {
+                    try {
+                        logger.info("Generando reporte para usuario: " + currentUser.getUsername());
+                        byte[] pdfBytes = reportService.generateTicketReport(DataStore.getInstance().getAllTickets());
+                        response = new Message(Protocol.STATUS_OK, pdfBytes);
+                        logger.info("Reporte generado exitosamente (" + pdfBytes.length + " bytes)");
+                    } catch (Exception e) {
+                        logger.error("Error generando reporte", e);
+                        response = new Message(Protocol.STATUS_ERROR, Protocol.ERR_REPORT_GENERATION);
+                    }
+                } else {
+                    response = new Message(Protocol.STATUS_UNAUTHORIZED, "Debe iniciar sesión");
+                }
                 break;
 
             default:
@@ -135,7 +155,7 @@ public class ClientHandler implements Runnable {
             } else {
                 logger.info("Cerrando conexión desde: " + clientAddress);
             }
-            
+
             if (out != null)
                 out.close();
             if (in != null)

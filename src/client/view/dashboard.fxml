@@ -27,6 +27,11 @@
             <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                <children>
                   <Button fx:id="reloadButton" mnemonicParsing="false" onAction="#handleReload" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Recargar" />
+                  <Button fx:id="reportButton" mnemonicParsing="false" onAction="#handleGenerateReport" style="-fx-background-color: #9b59b6; -fx-text-fill: white;" text="Reporte PDF">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
                   <Button fx:id="addTicketButton" mnemonicParsing="false" onAction="#handleAddTicket" style="-fx-background-color: #2ecc71; -fx-text-fill: white;" text="+ Nuevo Ticket">
                      <HBox.margin>
                         <Insets left="10.0" />

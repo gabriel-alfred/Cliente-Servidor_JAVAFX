@@ -5,7 +5,6 @@ import common.Protocol;
 import common.model.Message;
 import common.model.Ticket;
 import common.model.User;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -28,6 +27,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import javafx.stage.FileChooser;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -43,6 +45,9 @@ public class DashboardController implements Initializable {
 
   @FXML
   private Button reloadButton;
+
+  @FXML
+  private Button reportButton;
 
   @FXML
   private Button addTicketButton;
@@ -138,6 +143,67 @@ public class DashboardController implements Initializable {
   @FXML
   void handleReload(ActionEvent event) {
     refreshTickets();
+  }
+
+  @FXML
+  void handleGenerateReport(ActionEvent event) {
+    reportButton.setDisable(true);
+    statusLabel.setText("Generando reporte...");
+
+    Task<byte[]> reportTask = new Task<byte[]>() {
+      @Override
+      protected byte[] call() throws Exception {
+        SocketClient client = SocketClient.getInstance();
+        Message request = new Message(Protocol.CMD_GENERATE_REPORT, null);
+        client.sendMessage(request);
+
+        Message response = client.receiveMessage();
+        if (response.getCommand() == Protocol.STATUS_OK) {
+          return (byte[]) response.getObject();
+        } else {
+          throw new Exception((String) response.getObject());
+        }
+      }
+    };
+
+    reportTask.setOnSucceeded(e -> {
+      byte[] pdfBytes = reportTask.getValue();
+      statusLabel.setText("Reporte generado. Guardando...");
+
+      FileChooser fileChooser = new FileChooser();
+      fileChooser.setTitle("Guardar Reporte");
+      fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+      fileChooser.setInitialFileName("tickets_report.pdf");
+
+      File file = fileChooser.showSaveDialog(reportButton.getScene().getWindow());
+
+      if (file != null) {
+        try (FileOutputStream fos = new FileOutputStream(file)) {
+          fos.write(pdfBytes);
+          statusLabel.setText("Reporte guardado en: " + file.getName());
+
+          Alert alert = new Alert(Alert.AlertType.INFORMATION);
+          alert.setTitle("Éxito");
+          alert.setHeaderText(null);
+          alert.setContentText("El reporte se ha guardado correctamente.");
+          alert.showAndWait();
+        } catch (IOException ex) {
+          statusLabel.setText("Error al guardar archivo");
+          ex.printStackTrace();
+        }
+      } else {
+        statusLabel.setText("Guardado cancelado");
+      }
+      reportButton.setDisable(false);
+    });
+
+    reportTask.setOnFailed(e -> {
+      statusLabel.setText("Error al generar reporte: " + reportTask.getException().getMessage());
+      reportButton.setDisable(false);
+      reportTask.getException().printStackTrace();
+    });
+
+    new Thread(reportTask).start();
   }
 
   @FXML
