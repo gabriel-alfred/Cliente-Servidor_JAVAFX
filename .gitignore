@@ -5,3 +5,12 @@ target/
 .settings/
 .classpath
 .project
+*.log
+*.dat
+bin/
+.vscode/
+*.swp
+*.bak
+*~
+.DS_Store
+Thumbs.db

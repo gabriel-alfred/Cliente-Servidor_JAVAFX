@@ -57,7 +57,7 @@ public class ServerLogger {
     }
 
     /**
-     * Log an ERROR with exception details
+     * Registra un error con los detalles de la excepción
      */
     public synchronized void error(String message, Throwable throwable) {
         log("ERROR", message + " - " + throwable.getMessage());

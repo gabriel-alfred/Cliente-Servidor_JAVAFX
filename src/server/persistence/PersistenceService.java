@@ -26,7 +26,7 @@ public class PersistenceService {
     }
 
     /**
-     * Container class to hold all server data for serialization
+     * Clase contenedora para serializar los datos del servidor
      */
     public static class ServerData implements Serializable {
         private static final long serialVersionUID = 1L;

@@ -101,7 +101,7 @@ public class TicketFormController implements Initializable {
       descField.textProperty().addListener((observable, oldValue, newValue) -> {
         descField.getStyleClass().remove("error-field");
       });
-      // Optional: keep alert or rely on visual cues. Keeping it for now as per plan.
+
       showAlert("Error", "Por favor completa todos los campos.");
       return;
     }

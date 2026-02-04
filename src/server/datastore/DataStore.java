@@ -22,7 +22,7 @@ public class DataStore {
         tickets = Collections.synchronizedList(new ArrayList<>());
         persistenceService = PersistenceService.getInstance();
 
-        // Try to load data, if not available use dummy data
+        // Intentar cargar datos, si no están disponibles usar datos por defecto
         loadData();
     }
 

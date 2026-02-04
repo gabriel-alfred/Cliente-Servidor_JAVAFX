@@ -118,11 +118,11 @@ public class LoginController {
 
     private void loadDashboard(User user) {
         try {
-            // Assumes dashboard.fxml exists in view folder
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/client/view/dashboard.fxml"));
             Parent root = loader.load();
 
-            // You might want to pass the user to the dashboard controller here
+            // Pasar datos del usuario al controlador del dashboard
             DashboardController controller = loader.getController();
             controller.initData(user);
 
