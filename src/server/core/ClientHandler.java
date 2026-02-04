@@ -139,6 +139,18 @@ public class ClientHandler implements Runnable {
                 }
                 break;
 
+            case Protocol.CMD_GET_LOGS:
+                if (currentUser != null && "ADMIN".equals(currentUser.getRole())) {
+                    String logs = logger.getLogs();
+                    response = new Message(Protocol.STATUS_OK, logs);
+                    logger.info("Usuario ADMIN " + currentUser.getUsername() + " solicitó los logs globales");
+                } else {
+                    response = new Message(Protocol.STATUS_UNAUTHORIZED, "Acceso denegado: Se requiere rol de administrador");
+                    logger.warning("Intento no autorizado de ver logs por " + 
+                        (currentUser != null ? currentUser.getUsername() : "Anónimo") + " desde " + clientAddress);
+                }
+                break;
+
             default:
                 logger.warning("Comando desconocido recibido desde " + clientAddress + ": " + request.getCommand());
                 break;

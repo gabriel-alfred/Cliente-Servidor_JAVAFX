@@ -11,6 +11,7 @@ public class Protocol {
     public static final int CMD_UPDATE_TICKET = 4;
     public static final int CMD_LOGOUT = 5;
     public static final int CMD_GENERATE_REPORT = 6;
+    public static final int CMD_GET_LOGS = 7;
 
     // Response Status
     public static final int STATUS_OK = 200;

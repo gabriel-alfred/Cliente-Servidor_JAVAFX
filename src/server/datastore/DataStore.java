@@ -54,11 +54,13 @@ public class DataStore {
      */
     private void initData() {
         users.add(new User("admin", "admin", "ADMIN"));
-        users.add(new User("user", "user", "USER"));
+        users.add(new User("usuario1", "usuario1", "USER"));
+        users.add(new User("usuario2", "usuario2", "USER"));
+        users.add(new User("usuario3", "usuario3", "USER"));
 
         // Add some initial tickets
-        tickets.add(new Ticket(1, "Problema de red", "No puedo acceder a internet", "user"));
-        tickets.add(new Ticket(2, "Error en login", "La contraseña no funciona", "user"));
+        tickets.add(new Ticket(1, "Problema de red", "No puedo acceder a internet", "usuario1"));
+        tickets.add(new Ticket(2, "Error en login", "La contraseña no funciona", "usuario2"));
     }
 
     /**

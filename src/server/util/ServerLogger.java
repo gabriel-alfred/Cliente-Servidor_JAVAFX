@@ -84,6 +84,21 @@ public class ServerLogger {
     }
 
     /**
+     * Devuelve el contenido del archivo de log.
+     */
+    public synchronized String getLogs() {
+        StringBuilder sb = new StringBuilder();
+        try (java.util.Scanner scanner = new java.util.Scanner(new java.io.File(LOG_FILE))) {
+            while (scanner.hasNextLine()) {
+                sb.append(scanner.nextLine()).append("\n");
+            }
+        } catch (java.io.FileNotFoundException e) {
+            return "Archivo de log no encontrado.";
+        }
+        return sb.toString();
+    }
+
+    /**
      * Close the log file
      */
     public synchronized void close() {

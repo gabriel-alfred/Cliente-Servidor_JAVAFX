@@ -32,6 +32,11 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Button>
+                  <Button fx:id="logsButton" mnemonicParsing="false" onAction="#handleViewLogs" style="-fx-background-color: #607d8b; -fx-text-fill: white;" text="Logs Servidor" visible="false" managed="false">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
                   <Button fx:id="addTicketButton" mnemonicParsing="false" onAction="#handleAddTicket" style="-fx-background-color: #2ecc71; -fx-text-fill: white;" text="+ Nuevo Ticket">
                      <HBox.margin>
                         <Insets left="10.0" />

@@ -50,6 +50,9 @@ public class DashboardController implements Initializable {
   private Button reportButton;
 
   @FXML
+  private Button logsButton;
+
+  @FXML
   private Button addTicketButton;
 
   @FXML
@@ -87,6 +90,13 @@ public class DashboardController implements Initializable {
   public void initData(User user) {
     this.currentUser = user;
     userLabel.setText("Bienvenido, " + user.getUsername());
+    
+    // Si es admin, mostrar botón de logs
+    if ("ADMIN".equals(user.getRole())) {
+        logsButton.setVisible(true);
+        logsButton.setManaged(true);
+    }
+    
     refreshTickets();
   }
 
@@ -245,6 +255,62 @@ public class DashboardController implements Initializable {
       e.printStackTrace();
       statusLabel.setText("Error al abrir formulario: " + e.getMessage());
     }
+  }
+
+  @FXML
+  void handleViewLogs(ActionEvent event) {
+    statusLabel.setText("Obteniendo logs del servidor...");
+    logsButton.setDisable(true);
+
+    Task<String> logTask = new Task<String>() {
+      @Override
+      protected String call() throws Exception {
+        SocketClient client = SocketClient.getInstance();
+        Message request = new Message(Protocol.CMD_GET_LOGS, null);
+        client.sendMessage(request);
+
+        Message response = client.receiveMessage();
+        if (response.getCommand() == Protocol.STATUS_OK) {
+            return (String) response.getObject();
+        } else {
+            throw new Exception((String) response.getObject());
+        }
+      }
+    };
+
+    logTask.setOnSucceeded(e -> {
+      String logs = logTask.getValue();
+      logsButton.setDisable(false);
+      statusLabel.setText("Logs cargados.");
+      
+      // Mostrar logs en un diálogo simple
+      showLogsDialog(logs);
+    });
+
+    logTask.setOnFailed(e -> {
+      logsButton.setDisable(false);
+      statusLabel.setText("Error al cargar logs.");
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setTitle("Error");
+      alert.setContentText("No se pudieron cargar los logs: " + logTask.getException().getMessage());
+      alert.showAndWait();
+    });
+
+    new Thread(logTask).start();
+  }
+
+  private void showLogsDialog(String logsContent) {
+    Stage stage = new Stage();
+    stage.setTitle("Logs del Servidor");
+    stage.initModality(Modality.APPLICATION_MODAL);
+    
+    javafx.scene.control.TextArea textArea = new javafx.scene.control.TextArea(logsContent);
+    textArea.setEditable(false);
+    textArea.setFont(new javafx.scene.text.Font("Monospaced", 12));
+    
+    Scene scene = new Scene(textArea, 600, 400);
+    stage.setScene(scene);
+    stage.show();
   }
 
   @FXML
