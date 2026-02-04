@@ -46,7 +46,10 @@ public class ClientHandler implements Runnable {
                     Message request = (Message) in.readObject();
                     handleRequest(request);
                 } catch (ClassNotFoundException e) {
-                    logger.error("Error al leer objeto desde " + clientAddress, e);
+                    logger.error("Error al leer clase de objeto desde " + clientAddress, e);
+                } catch (Throwable t) {
+                    logger.error("Error inesperado procesando peticion de " + clientAddress, t);
+                    break; // Salir del bucle si hay un error grave
                 }
             }
         } catch (IOException e) {

@@ -87,15 +87,18 @@ public class ServerLogger {
      * Devuelve el contenido del archivo de log.
      */
     public synchronized String getLogs() {
-        StringBuilder sb = new StringBuilder();
-        try (java.util.Scanner scanner = new java.util.Scanner(new java.io.File(LOG_FILE))) {
-            while (scanner.hasNextLine()) {
-                sb.append(scanner.nextLine()).append("\n");
+        try {
+            java.nio.file.Path path = java.nio.file.Paths.get(LOG_FILE);
+            if (!java.nio.file.Files.exists(path)) {
+                return "Archivo de log no encontrado.";
             }
-        } catch (java.io.FileNotFoundException e) {
-            return "Archivo de log no encontrado.";
+            // Leer todas las líneas usando UTF-8
+            return new String(java.nio.file.Files.readAllBytes(path), java.nio.charset.StandardCharsets.UTF_8);
+        } catch (java.io.IOException e) {
+            return "Error al leer el archivo de log: " + e.getMessage();
+        } catch (Exception e) {
+            return "Error inesperado al recuperar logs: " + e.getMessage();
         }
-        return sb.toString();
     }
 
     /**

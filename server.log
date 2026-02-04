@@ -218,3 +218,26 @@ net.sf.jasperreports.engine.JRException: Errors were encountered when compiling 
 [2026-02-04 09:23:05] [INFO] Generando reporte para usuario: admin
 [2026-02-04 09:23:05] [INFO] Iniciando generación de reporte para 3 tickets
 [2026-02-04 09:23:10] [INFO] Reporte generado exitosamente (4137 bytes)
+[2026-02-04 10:09:15] [INFO] === Servidor iniciado ===
+[2026-02-04 10:09:15] [INFO] Iniciando servidor en puerto 9000...
+[2026-02-04 10:09:15] [INFO] DataStore inicializado
+[2026-02-04 10:09:15] [INFO] Servidor escuchando en puerto 9000
+[2026-02-04 10:09:35] [INFO] Nueva conexión desde: 127.0.0.1
+[2026-02-04 10:09:35] [INFO] Cliente conectado: 127.0.0.1
+[2026-02-04 10:09:35] [INFO] Intento de login: admin desde 127.0.0.1
+[2026-02-04 10:09:35] [INFO] Login exitoso: admin (ADMIN)
+[2026-02-04 10:09:35] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:09:38] [INFO] Cerrando conexión para usuario: admin
+[2026-02-04 10:11:49] [INFO] Señal de apagado recibida. Guardando datos...
+[2026-02-04 10:11:49] [INFO] Cerrando pool de hilos...
+[2026-02-04 10:11:49] [INFO] === Servidor detenido ===
+[2026-02-04 10:12:12] [INFO] === Servidor iniciado ===
+[2026-02-04 10:12:12] [INFO] Iniciando servidor en puerto 9000...
+[2026-02-04 10:12:12] [INFO] DataStore inicializado
+[2026-02-04 10:12:12] [INFO] Servidor escuchando en puerto 9000
+[2026-02-04 10:12:29] [INFO] Nueva conexión desde: 127.0.0.1
+[2026-02-04 10:12:29] [INFO] Cliente conectado: 127.0.0.1
+[2026-02-04 10:12:29] [INFO] Intento de login: admin desde 127.0.0.1
+[2026-02-04 10:12:29] [INFO] Login exitoso: admin (ADMIN)
+[2026-02-04 10:12:29] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:12:31] [INFO] Usuario ADMIN admin solicitó los logs globales
