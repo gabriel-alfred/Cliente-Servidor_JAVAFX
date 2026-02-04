@@ -13,7 +13,7 @@ public class ClientApp extends Application {
     public void start(Stage primaryStage) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/client/view/login.fxml"));
-            primaryStage.setTitle("Cliente - Login");
+            primaryStage.setTitle("AetherDesk - Acceso Seguro");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
         } catch (IOException e) {

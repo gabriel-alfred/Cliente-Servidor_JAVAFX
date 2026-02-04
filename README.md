@@ -1,4 +1,4 @@
-# Cliente-Servidor JavaFX - Guía Rápida
+# AetherDesk - Sistema de Gestión de Tickets
 
 ## Inicio Rápido
 
@@ -19,10 +19,10 @@ mvn exec:java -Dexec.mainClass="server.ServerApp"
 mvn javafx:run
 ```
 
-## Credenciales
+## Credenciales de Acceso
 
-- **Admin**: `admin` / `admin`
-- **User**: `user` / `user`
+- **Administrador**: `admin` / `admin`
+- **Operadores**: `usuario1`, `usuario2`, `usuario3` (password igual al usuario)
 
 
 ## Comandos Útiles

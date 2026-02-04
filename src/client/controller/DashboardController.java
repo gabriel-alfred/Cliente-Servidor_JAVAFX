@@ -35,7 +35,13 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
+
 public class DashboardController implements Initializable {
+    
+  private Timeline autoRefreshTimeline;
 
   @FXML
   private Label userLabel;
@@ -97,7 +103,15 @@ public class DashboardController implements Initializable {
         logsButton.setManaged(true);
     }
     
-    refreshTickets();
+    refreshTickets(false);
+    startAutoRefresh();
+  }
+
+  private void startAutoRefresh() {
+      // Auto-refresh every 3 seconds
+      autoRefreshTimeline = new Timeline(new KeyFrame(Duration.seconds(3), e -> refreshTickets(true)));
+      autoRefreshTimeline.setCycleCount(Timeline.INDEFINITE);
+      autoRefreshTimeline.play();
   }
 
   private void setupTable() {
@@ -114,6 +128,33 @@ public class DashboardController implements Initializable {
 
     // Enable row selection
     ticketTable.getSelectionModel().setCellSelectionEnabled(false);
+    
+    // Dynamic styling based on status
+    ticketTable.setRowFactory(tv -> new javafx.scene.control.TableRow<Ticket>() {
+        @Override
+        protected void updateItem(Ticket item, boolean empty) {
+            super.updateItem(item, empty);
+            getStyleClass().removeAll("status-open", "status-progress", "status-closed");
+            if (item == null || empty) {
+                setStyle(""); // Reset style
+            } else {
+                // Apply classes based on status string (from enum or string)
+                if (item.getStatus() != null) {
+                    switch (item.getStatus()) {
+                        case OPEN:
+                            getStyleClass().add("status-open");
+                            break;
+                        case IN_PROGRESS:
+                            getStyleClass().add("status-progress");
+                            break;
+                        case CLOSED:
+                            getStyleClass().add("status-closed");
+                            break;
+                    }
+                }
+            }
+        }
+    });
   }
 
   private void setUpActionColumn() {
@@ -152,7 +193,7 @@ public class DashboardController implements Initializable {
 
   @FXML
   void handleReload(ActionEvent event) {
-    refreshTickets();
+    refreshTickets(false);
   }
 
   @FXML
@@ -316,13 +357,22 @@ public class DashboardController implements Initializable {
   @FXML
   void handleLogout(ActionEvent event) {
     // Implement logout logic if needed, or just close
+    if (autoRefreshTimeline != null) {
+        autoRefreshTimeline.stop();
+    }
     Stage stage = (Stage) logoutButton.getScene().getWindow();
     stage.close();
   }
 
   public void refreshTickets() {
-    statusLabel.setText("Cargando tickets...");
-    reloadButton.setDisable(true);
+      refreshTickets(false);
+  }
+
+  public void refreshTickets(boolean silent) {
+    if (!silent) {
+        statusLabel.setText("Cargando tickets...");
+        reloadButton.setDisable(true);
+    }
 
     Task<List<Ticket>> fetchTask = new Task<List<Ticket>>() {
       @Override
@@ -344,15 +394,19 @@ public class DashboardController implements Initializable {
     fetchTask.setOnSucceeded(e -> {
       List<Ticket> tickets = fetchTask.getValue();
       ticketList.setAll(tickets);
-      statusLabel.setText("Tickets actualizados: " + tickets.size());
-      reloadButton.setDisable(false);
+      if (!silent) {
+          statusLabel.setText("Tickets actualizados: " + tickets.size());
+          reloadButton.setDisable(false);
+      }
     });
 
     fetchTask.setOnFailed(e -> {
-      Throwable ex = fetchTask.getException();
-      ex.printStackTrace();
-      statusLabel.setText("Error: " + ex.getMessage());
-      reloadButton.setDisable(false);
+      if (!silent) {
+          Throwable ex = fetchTask.getException();
+          ex.printStackTrace();
+          statusLabel.setText("Error: " + ex.getMessage());
+          reloadButton.setDisable(false);
+      }
     });
 
     new Thread(fetchTask).start();

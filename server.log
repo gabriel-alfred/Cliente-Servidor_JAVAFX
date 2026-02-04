@@ -241,3 +241,105 @@ net.sf.jasperreports.engine.JRException: Errors were encountered when compiling 
 [2026-02-04 10:12:29] [INFO] Login exitoso: admin (ADMIN)
 [2026-02-04 10:12:29] [INFO] Usuario admin listó 3 tickets
 [2026-02-04 10:12:31] [INFO] Usuario ADMIN admin solicitó los logs globales
+[2026-02-04 10:20:08] [ERROR] Error inesperado procesando peticion de 127.0.0.1 - Connection reset
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1089)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.peek(ObjectInputStream.java:2878)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peek(ObjectInputStream.java:3205)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peekByte(ObjectInputStream.java:3215)
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1698)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:525)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:483)
+	at server.core.ClientHandler.run(ClientHandler.java:46)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+[2026-02-04 10:20:08] [INFO] Cerrando conexión para usuario: admin
+[2026-02-04 10:20:14] [INFO] Señal de apagado recibida. Guardando datos...
+[2026-02-04 10:20:14] [INFO] Cerrando pool de hilos...
+[2026-02-04 10:20:14] [INFO] === Servidor detenido ===
+[2026-02-04 10:20:23] [INFO] === Servidor iniciado ===
+[2026-02-04 10:20:23] [INFO] Iniciando servidor en puerto 9000...
+[2026-02-04 10:20:23] [INFO] DataStore inicializado
+[2026-02-04 10:20:23] [INFO] Servidor escuchando en puerto 9000
+[2026-02-04 10:21:14] [INFO] Nueva conexión desde: 127.0.0.1
+[2026-02-04 10:21:14] [INFO] Cliente conectado: 127.0.0.1
+[2026-02-04 10:21:14] [INFO] Intento de login: usuario1 desde 127.0.0.1
+[2026-02-04 10:21:14] [WARNING] Login fallido para usuario: usuario1 desde 127.0.0.1
+[2026-02-04 10:21:22] [INFO] Intento de login: admin desde 127.0.0.1
+[2026-02-04 10:21:22] [INFO] Login exitoso: admin (ADMIN)
+[2026-02-04 10:21:22] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:21:42] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:21:43] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:21:43] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:21:44] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:21:44] [INFO] Usuario ADMIN admin solicitó los logs globales
+[2026-02-04 10:22:00] [INFO] Generando reporte para usuario: admin
+[2026-02-04 10:22:00] [INFO] Iniciando generación de reporte para 3 tickets
+[2026-02-04 10:22:04] [INFO] Reporte generado exitosamente (4137 bytes)
+[2026-02-04 10:22:11] [ERROR] Error inesperado procesando peticion de 127.0.0.1 - Connection reset
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1089)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.peek(ObjectInputStream.java:2878)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peek(ObjectInputStream.java:3205)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peekByte(ObjectInputStream.java:3215)
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1698)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:525)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:483)
+	at server.core.ClientHandler.run(ClientHandler.java:46)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+[2026-02-04 10:22:11] [INFO] Cerrando conexión para usuario: admin
+[2026-02-04 10:25:05] [INFO] Señal de apagado recibida. Guardando datos...
+[2026-02-04 10:25:05] [INFO] Cerrando pool de hilos...
+[2026-02-04 10:25:05] [INFO] === Servidor detenido ===
+[2026-02-04 10:25:12] [INFO] === Servidor iniciado ===
+[2026-02-04 10:25:12] [INFO] Iniciando servidor en puerto 9000...
+[2026-02-04 10:25:12] [INFO] DataStore inicializado
+[2026-02-04 10:25:12] [INFO] Servidor escuchando en puerto 9000
+[2026-02-04 10:25:47] [INFO] Nueva conexión desde: 127.0.0.1
+[2026-02-04 10:25:47] [INFO] Cliente conectado: 127.0.0.1
+[2026-02-04 10:25:47] [INFO] Intento de login: admin desde 127.0.0.1
+[2026-02-04 10:25:47] [INFO] Login exitoso: admin (ADMIN)
+[2026-02-04 10:25:47] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:26:19] [INFO] Usuario ADMIN admin solicitó los logs globales
+[2026-02-04 10:29:06] [ERROR] Error inesperado procesando peticion de 127.0.0.1 - Connection reset
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1089)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.peek(ObjectInputStream.java:2878)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peek(ObjectInputStream.java:3205)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peekByte(ObjectInputStream.java:3215)
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1698)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:525)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:483)
+	at server.core.ClientHandler.run(ClientHandler.java:46)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+[2026-02-04 10:29:06] [INFO] Cerrando conexión para usuario: admin
+[2026-02-04 10:29:10] [INFO] Señal de apagado recibida. Guardando datos...
+[2026-02-04 10:29:10] [INFO] Cerrando pool de hilos...
+[2026-02-04 10:29:10] [INFO] === Servidor detenido ===
+[2026-02-04 10:29:51] [INFO] === Servidor iniciado ===
+[2026-02-04 10:29:51] [INFO] Iniciando servidor en puerto 9000...
+[2026-02-04 10:29:51] [INFO] DataStore inicializado
+[2026-02-04 10:29:51] [INFO] Servidor escuchando en puerto 9000
+[2026-02-04 10:32:04] [INFO] Señal de apagado recibida. Guardando datos...
+[2026-02-04 10:32:04] [INFO] Cerrando pool de hilos...
+[2026-02-04 10:32:04] [INFO] === Servidor detenido ===

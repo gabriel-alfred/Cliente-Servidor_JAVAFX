@@ -8,19 +8,38 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="15.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.LoginController">
+<VBox alignment="CENTER" styleClass="login-container" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.LoginController" prefWidth="800.0" prefHeight="600.0">
    <children>
-      <Label text="Iniciar Sesión">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <TextField fx:id="usernameField" promptText="Usuario" maxWidth="300.0" />
-      <PasswordField fx:id="passwordField" promptText="Contraseña" maxWidth="300.0" />
-      <Label fx:id="errorLabel" textFill="RED" visible="false" />
-      <Button fx:id="loginButton" mnemonicParsing="false" onAction="#handleLogin" text="Entrar" />
+      <VBox alignment="CENTER" spacing="30.0" styleClass="login-card" maxWidth="400.0">
+         <children>
+            <VBox alignment="CENTER" spacing="5.0">
+               <children>
+                  <Label text="AETHERDESK" styleClass="login-title">
+                     <font>
+                        <Font name="System Bold" size="32.0" />
+                     </font>
+                  </Label>
+                  <Label text="Gestión Inteligente de Tickets" style="-fx-text-fill: -color-text-muted;" />
+               </children>
+            </VBox>
+            
+            <VBox spacing="15.0">
+               <children>
+                  <VBox spacing="5.0">
+                     <Label text="Usuario" style="-fx-font-weight: bold;" />
+                     <TextField fx:id="usernameField" promptText="Nombre de usuario" maxWidth="Infinity" />
+                  </VBox>
+                  <VBox spacing="5.0">
+                     <Label text="Contraseña" style="-fx-font-weight: bold;" />
+                     <PasswordField fx:id="passwordField" promptText="••••••••" maxWidth="Infinity" />
+                  </VBox>
+               </children>
+            </VBox>
+            
+            <Label fx:id="errorLabel" styleClass="error-label" visible="false" />
+            
+            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#handleLogin" text="ENTRAR AL SISTEMA" maxWidth="Infinity" styleClass="btn-primary" />
+         </children>
+      </VBox>
    </children>
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
 </VBox>
