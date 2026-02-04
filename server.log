@@ -1,0 +1,220 @@
+[2026-02-04 09:11:19] [INFO] === Servidor iniciado ===
+[2026-02-04 09:11:19] [INFO] Iniciando servidor en puerto 9000...
+[2026-02-04 09:11:19] [INFO] DataStore inicializado
+[2026-02-04 09:11:19] [INFO] Servidor escuchando en puerto 9000
+[2026-02-04 09:11:51] [INFO] Nueva conexión desde: 127.0.0.1
+[2026-02-04 09:11:51] [INFO] Cliente conectado: 127.0.0.1
+[2026-02-04 09:11:51] [INFO] Intento de login: admin desde 127.0.0.1
+[2026-02-04 09:11:51] [INFO] Login exitoso: admin (ADMIN)
+[2026-02-04 09:11:52] [INFO] Usuario admin listó 2 tickets
+[2026-02-04 09:12:08] [INFO] Ticket actualizado por admin: ID=1, Estado=IN_PROGRESS
+[2026-02-04 09:12:08] [INFO] Usuario admin listó 2 tickets
+[2026-02-04 09:12:20] [INFO] Ticket creado por admin: ID=3, Título='arreglar esta app'
+[2026-02-04 09:12:20] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 09:12:25] [INFO] Ticket actualizado por admin: ID=3, Estado=CLOSED
+[2026-02-04 09:12:25] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 09:12:27] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 09:12:28] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 09:12:28] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 09:12:28] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 09:12:28] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 09:12:29] [INFO] Generando reporte para usuario: admin
+[2026-02-04 09:12:29] [INFO] Iniciando generación de reporte para 3 tickets
+[2026-02-04 09:12:30] [ERROR] Error generando reporte - Cannot invoke "java.lang.Throwable.getMessage()" because "throwable" is null
+java.lang.NullPointerException: Cannot invoke "java.lang.Throwable.getMessage()" because "throwable" is null
+	at server.util.ServerLogger.error(ServerLogger.java:63)
+	at server.service.ReportService.generateTicketReport(ReportService.java:24)
+	at server.core.ClientHandler.handleRequest(ClientHandler.java:130)
+	at server.core.ClientHandler.run(ClientHandler.java:47)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+[2026-02-04 09:16:43] [INFO] === Servidor iniciado ===
+[2026-02-04 09:16:43] [INFO] Iniciando servidor en puerto 9000...
+[2026-02-04 09:16:43] [INFO] DataStore inicializado
+[2026-02-04 09:16:43] [INFO] Servidor escuchando en puerto 9000
+[2026-02-04 09:17:01] [INFO] Nueva conexión desde: 127.0.0.1
+[2026-02-04 09:17:01] [INFO] Cliente conectado: 127.0.0.1
+[2026-02-04 09:17:01] [INFO] Intento de login: admin desde 127.0.0.1
+[2026-02-04 09:17:01] [INFO] Login exitoso: admin (ADMIN)
+[2026-02-04 09:17:01] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 09:17:04] [INFO] Generando reporte para usuario: admin
+[2026-02-04 09:17:04] [INFO] Iniciando generación de reporte para 3 tickets
+[2026-02-04 09:17:05] [ERROR] Error generando el reporte PDF - org.xml.sax.SAXParseException; lineNumber: 36; columnNumber: 76; Error at line 36 char 76: Invalid UUID string: line-uuid-1
+net.sf.jasperreports.engine.JRException: org.xml.sax.SAXParseException; lineNumber: 36; columnNumber: 76; Error at line 36 char 76: Invalid UUID string: line-uuid-1
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.loadXML(JRXmlLoader.java:285)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.loadXML(JRXmlLoader.java:268)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.load(JRXmlLoader.java:257)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.load(JRXmlLoader.java:235)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:342)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReport(JasperCompileManager.java:609)
+	at server.service.ReportService.generateTicketReport(ReportService.java:30)
+	at server.core.ClientHandler.handleRequest(ClientHandler.java:130)
+	at server.core.ClientHandler.run(ClientHandler.java:47)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: org.xml.sax.SAXParseException; lineNumber: 36; columnNumber: 76; Error at line 36 char 76: Invalid UUID string: line-uuid-1
+	at org.apache.commons.digester.Digester.createSAXException(Digester.java:3363)
+	at org.apache.commons.digester.Digester.createSAXException(Digester.java:3389)
+	at org.apache.commons.digester.Digester.startElement(Digester.java:1586)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.startElement(AbstractSAXParser.java:519)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.AbstractXMLDocumentParser.emptyElement(AbstractXMLDocumentParser.java:183)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.emptyElement(XMLSchemaValidator.java:864)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:352)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2735)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:635)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:113)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:551)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:890)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:826)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:134)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1225)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:643)
+	at org.apache.commons.digester.Digester.parse(Digester.java:1892)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.loadXML(JRXmlLoader.java:281)
+	... 11 more
+Caused by: java.lang.IllegalArgumentException: Invalid UUID string: line-uuid-1
+	at java.base/java.util.UUID.fromString1(UUID.java:286)
+	at java.base/java.util.UUID.fromString(UUID.java:264)
+	at net.sf.jasperreports.engine.xml.JRElementFactory.createObject(JRElementFactory.java:57)
+	at org.apache.commons.digester.FactoryCreateRule.begin(FactoryCreateRule.java:397)
+	at org.apache.commons.digester.Digester.startElement(Digester.java:1583)
+	... 26 more
+[2026-02-04 09:17:05] [ERROR] Error generando reporte - org.xml.sax.SAXParseException; lineNumber: 36; columnNumber: 76; Error at line 36 char 76: Invalid UUID string: line-uuid-1
+net.sf.jasperreports.engine.JRException: org.xml.sax.SAXParseException; lineNumber: 36; columnNumber: 76; Error at line 36 char 76: Invalid UUID string: line-uuid-1
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.loadXML(JRXmlLoader.java:285)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.loadXML(JRXmlLoader.java:268)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.load(JRXmlLoader.java:257)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.load(JRXmlLoader.java:235)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:342)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReport(JasperCompileManager.java:609)
+	at server.service.ReportService.generateTicketReport(ReportService.java:30)
+	at server.core.ClientHandler.handleRequest(ClientHandler.java:130)
+	at server.core.ClientHandler.run(ClientHandler.java:47)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+Caused by: org.xml.sax.SAXParseException; lineNumber: 36; columnNumber: 76; Error at line 36 char 76: Invalid UUID string: line-uuid-1
+	at org.apache.commons.digester.Digester.createSAXException(Digester.java:3363)
+	at org.apache.commons.digester.Digester.createSAXException(Digester.java:3389)
+	at org.apache.commons.digester.Digester.startElement(Digester.java:1586)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.startElement(AbstractSAXParser.java:519)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.AbstractXMLDocumentParser.emptyElement(AbstractXMLDocumentParser.java:183)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.xs.XMLSchemaValidator.emptyElement(XMLSchemaValidator.java:864)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:352)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2735)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:635)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:113)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:551)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:890)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:826)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:134)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1225)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:643)
+	at org.apache.commons.digester.Digester.parse(Digester.java:1892)
+	at net.sf.jasperreports.engine.xml.JRXmlLoader.loadXML(JRXmlLoader.java:281)
+	... 11 more
+Caused by: java.lang.IllegalArgumentException: Invalid UUID string: line-uuid-1
+	at java.base/java.util.UUID.fromString1(UUID.java:286)
+	at java.base/java.util.UUID.fromString(UUID.java:264)
+	at net.sf.jasperreports.engine.xml.JRElementFactory.createObject(JRElementFactory.java:57)
+	at org.apache.commons.digester.FactoryCreateRule.begin(FactoryCreateRule.java:397)
+	at org.apache.commons.digester.Digester.startElement(Digester.java:1583)
+	... 26 more
+[2026-02-04 09:19:01] [INFO] Cliente desconectado: 127.0.0.1
+[2026-02-04 09:19:01] [INFO] Cerrando conexión para usuario: admin
+[2026-02-04 09:19:59] [INFO] === Servidor iniciado ===
+[2026-02-04 09:19:59] [INFO] Iniciando servidor en puerto 9000...
+[2026-02-04 09:19:59] [INFO] DataStore inicializado
+[2026-02-04 09:19:59] [INFO] Servidor escuchando en puerto 9000
+[2026-02-04 09:20:19] [INFO] Nueva conexión desde: 127.0.0.1
+[2026-02-04 09:20:19] [INFO] Cliente conectado: 127.0.0.1
+[2026-02-04 09:20:19] [INFO] Intento de login: admin desde 127.0.0.1
+[2026-02-04 09:20:19] [INFO] Login exitoso: admin (ADMIN)
+[2026-02-04 09:20:19] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 09:20:27] [INFO] Generando reporte para usuario: admin
+[2026-02-04 09:20:27] [INFO] Iniciando generación de reporte para 3 tickets
+[2026-02-04 09:20:31] [ERROR] Error generando el reporte PDF - Errors were encountered when compiling report expressions class file:
+1. The nested type common.model.Ticket$Status cannot be referenced using its binary name
+                value = ((common.model.Ticket$Status)field_status.getValue()).toString(); //$JR_EXPR_ID=12$
+                          <------------------------>
+2. The nested type common.model.Ticket$Status cannot be referenced using its binary name
+                value = ((common.model.Ticket$Status)field_status.getOldValue()).toString(); //$JR_EXPR_ID=12$
+                          <------------------------>
+3. The nested type common.model.Ticket$Status cannot be referenced using its binary name
+                value = ((common.model.Ticket$Status)field_status.getValue()).toString(); //$JR_EXPR_ID=12$
+                          <------------------------>
+3 errors
+.
+net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file:
+1. The nested type common.model.Ticket$Status cannot be referenced using its binary name
+                value = ((common.model.Ticket$Status)field_status.getValue()).toString(); //$JR_EXPR_ID=12$
+                          <------------------------>
+2. The nested type common.model.Ticket$Status cannot be referenced using its binary name
+                value = ((common.model.Ticket$Status)field_status.getOldValue()).toString(); //$JR_EXPR_ID=12$
+                          <------------------------>
+3. The nested type common.model.Ticket$Status cannot be referenced using its binary name
+                value = ((common.model.Ticket$Status)field_status.getValue()).toString(); //$JR_EXPR_ID=12$
+                          <------------------------>
+3 errors
+.
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:234)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:358)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:344)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReport(JasperCompileManager.java:609)
+	at server.service.ReportService.generateTicketReport(ReportService.java:30)
+	at server.core.ClientHandler.handleRequest(ClientHandler.java:130)
+	at server.core.ClientHandler.run(ClientHandler.java:47)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+[2026-02-04 09:20:31] [ERROR] Error generando reporte - Errors were encountered when compiling report expressions class file:
+1. The nested type common.model.Ticket$Status cannot be referenced using its binary name
+                value = ((common.model.Ticket$Status)field_status.getValue()).toString(); //$JR_EXPR_ID=12$
+                          <------------------------>
+2. The nested type common.model.Ticket$Status cannot be referenced using its binary name
+                value = ((common.model.Ticket$Status)field_status.getOldValue()).toString(); //$JR_EXPR_ID=12$
+                          <------------------------>
+3. The nested type common.model.Ticket$Status cannot be referenced using its binary name
+                value = ((common.model.Ticket$Status)field_status.getValue()).toString(); //$JR_EXPR_ID=12$
+                          <------------------------>
+3 errors
+.
+net.sf.jasperreports.engine.JRException: Errors were encountered when compiling report expressions class file:
+1. The nested type common.model.Ticket$Status cannot be referenced using its binary name
+                value = ((common.model.Ticket$Status)field_status.getValue()).toString(); //$JR_EXPR_ID=12$
+                          <------------------------>
+2. The nested type common.model.Ticket$Status cannot be referenced using its binary name
+                value = ((common.model.Ticket$Status)field_status.getOldValue()).toString(); //$JR_EXPR_ID=12$
+                          <------------------------>
+3. The nested type common.model.Ticket$Status cannot be referenced using its binary name
+                value = ((common.model.Ticket$Status)field_status.getValue()).toString(); //$JR_EXPR_ID=12$
+                          <------------------------>
+3 errors
+.
+	at net.sf.jasperreports.engine.design.JRAbstractCompiler.compileReport(JRAbstractCompiler.java:234)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:358)
+	at net.sf.jasperreports.engine.JasperCompileManager.compile(JasperCompileManager.java:344)
+	at net.sf.jasperreports.engine.JasperCompileManager.compileReport(JasperCompileManager.java:609)
+	at server.service.ReportService.generateTicketReport(ReportService.java:30)
+	at server.core.ClientHandler.handleRequest(ClientHandler.java:130)
+	at server.core.ClientHandler.run(ClientHandler.java:47)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+[2026-02-04 09:22:02] [INFO] Señal de apagado recibida. Guardando datos...
+[2026-02-04 09:22:02] [INFO] Cerrando pool de hilos...
+[2026-02-04 09:22:07] [INFO] === Servidor detenido ===
+[2026-02-04 09:22:40] [INFO] === Servidor iniciado ===
+[2026-02-04 09:22:40] [INFO] Iniciando servidor en puerto 9000...
+[2026-02-04 09:22:41] [INFO] DataStore inicializado
+[2026-02-04 09:22:41] [INFO] Servidor escuchando en puerto 9000
+[2026-02-04 09:23:00] [INFO] Nueva conexión desde: 127.0.0.1
+[2026-02-04 09:23:00] [INFO] Cliente conectado: 127.0.0.1
+[2026-02-04 09:23:00] [INFO] Intento de login: admin desde 127.0.0.1
+[2026-02-04 09:23:00] [INFO] Login exitoso: admin (ADMIN)
+[2026-02-04 09:23:00] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 09:23:05] [INFO] Generando reporte para usuario: admin
+[2026-02-04 09:23:05] [INFO] Iniciando generación de reporte para 3 tickets
+[2026-02-04 09:23:10] [INFO] Reporte generado exitosamente (4137 bytes)

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ReportService {
-    private static final String REPORT_TEMPLATE_PATH = "/reports/ticket_report.jrxml";
+    private static final String REPORT_TEMPLATE_PATH = "/server/reports/ticket_report.jrxml";
     private final ServerLogger logger = ServerLogger.getInstance();
 
     public byte[] generateTicketReport(List<Ticket> tickets) throws JRException {
