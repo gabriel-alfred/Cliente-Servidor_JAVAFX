@@ -47,20 +47,38 @@ public class DataStore {
             // Initialize with default data
             initData();
         }
+        
+        // Ensure validation of default users even if data was loaded
+        ensureDefaultUsers();
     }
 
     /**
-     * Initialize default data
+     * Initialize default data (initial run)
      */
     private void initData() {
-        users.add(new User("admin", "admin", "ADMIN"));
-        users.add(new User("usuario1", "usuario1", "USER"));
-        users.add(new User("usuario2", "usuario2", "USER"));
-        users.add(new User("usuario3", "usuario3", "USER"));
-
-        // Add some initial tickets
+        // Tickets logic remains here
         tickets.add(new Ticket(1, "Problema de red", "No puedo acceder a internet", "usuario1"));
         tickets.add(new Ticket(2, "Error en login", "La contraseña no funciona", "usuario2"));
+    }
+    
+    /**
+     * Ensure default users always exist
+     */
+    private void ensureDefaultUsers() {
+        addIfMissing(new User("admin", "admin", "ADMIN"));
+        addIfMissing(new User("usuario1", "usuario1", "USER"));
+        addIfMissing(new User("usuario2", "usuario2", "USER"));
+        addIfMissing(new User("usuario3", "usuario3", "USER"));
+        saveData();
+    }
+    
+    private void addIfMissing(User user) {
+        synchronized(users) {
+            boolean exists = users.stream().anyMatch(u -> u.getUsername().equals(user.getUsername()));
+            if (!exists) {
+                users.add(user);
+            }
+        }
     }
 
     /**

@@ -343,3 +343,210 @@ java.net.SocketException: Connection reset
 [2026-02-04 10:32:04] [INFO] Señal de apagado recibida. Guardando datos...
 [2026-02-04 10:32:04] [INFO] Cerrando pool de hilos...
 [2026-02-04 10:32:04] [INFO] === Servidor detenido ===
+[2026-02-04 10:32:59] [INFO] === Servidor iniciado ===
+[2026-02-04 10:32:59] [INFO] Iniciando servidor en puerto 9000...
+[2026-02-04 10:32:59] [INFO] DataStore inicializado
+[2026-02-04 10:32:59] [INFO] Servidor escuchando en puerto 9000
+[2026-02-04 10:33:14] [INFO] Nueva conexión desde: 127.0.0.1
+[2026-02-04 10:33:14] [INFO] Cliente conectado: 127.0.0.1
+[2026-02-04 10:33:14] [INFO] Intento de login: admin desde 127.0.0.1
+[2026-02-04 10:33:14] [INFO] Login exitoso: admin (ADMIN)
+[2026-02-04 10:33:14] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:33:17] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:33:20] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:33:23] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:33:26] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:33:29] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:33:32] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:33:35] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:33:38] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:33:41] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:33:44] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:33:47] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:33:50] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:33:53] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:33:56] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:33:59] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:34:02] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:34:05] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:34:08] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:34:11] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:34:14] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:34:17] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:34:17] [INFO] Nueva conexión desde: 127.0.0.1
+[2026-02-04 10:34:17] [INFO] Cliente conectado: 127.0.0.1
+[2026-02-04 10:34:17] [INFO] Intento de login: usuario1 desde 127.0.0.1
+[2026-02-04 10:34:17] [WARNING] Login fallido para usuario: usuario1 desde 127.0.0.1
+[2026-02-04 10:34:20] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:34:23] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:34:26] [INFO] Intento de login: usuario1 desde 127.0.0.1
+[2026-02-04 10:34:26] [WARNING] Login fallido para usuario: usuario1 desde 127.0.0.1
+[2026-02-04 10:34:26] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:34:27] [INFO] Intento de login: usuario1 desde 127.0.0.1
+[2026-02-04 10:34:27] [WARNING] Login fallido para usuario: usuario1 desde 127.0.0.1
+[2026-02-04 10:34:28] [INFO] Intento de login: usuario1 desde 127.0.0.1
+[2026-02-04 10:34:28] [WARNING] Login fallido para usuario: usuario1 desde 127.0.0.1
+[2026-02-04 10:34:29] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:34:32] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:34:35] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:34:38] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:34:41] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:34:44] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:34:47] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:34:50] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:34:53] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:34:54] [INFO] Intento de login: usuario1 desde 127.0.0.1
+[2026-02-04 10:34:54] [WARNING] Login fallido para usuario: usuario1 desde 127.0.0.1
+[2026-02-04 10:34:56] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:34:58] [INFO] Intento de login: usuario1 desde 127.0.0.1
+[2026-02-04 10:34:58] [WARNING] Login fallido para usuario: usuario1 desde 127.0.0.1
+[2026-02-04 10:34:59] [INFO] Intento de login: usuario1 desde 127.0.0.1
+[2026-02-04 10:34:59] [WARNING] Login fallido para usuario: usuario1 desde 127.0.0.1
+[2026-02-04 10:34:59] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:02] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:05] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:08] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:11] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:14] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:17] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:20] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:23] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:26] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:29] [INFO] Intento de login: admin desde 127.0.0.1
+[2026-02-04 10:35:29] [INFO] Login exitoso: admin (ADMIN)
+[2026-02-04 10:35:29] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:29] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:32] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:32] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:35] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:35] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:38] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:38] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:41] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:41] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:44] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:44] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:47] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:47] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:50] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:50] [INFO] Usuario admin listó 3 tickets
+[2026-02-04 10:35:52] [INFO] Ticket creado por admin: ID=4, Título='Error en el acceso a la applicacion'
+[2026-02-04 10:35:52] [INFO] Usuario admin listó 4 tickets
+[2026-02-04 10:35:53] [INFO] Usuario admin listó 4 tickets
+[2026-02-04 10:35:53] [INFO] Usuario admin listó 4 tickets
+[2026-02-04 10:35:56] [INFO] Usuario admin listó 4 tickets
+[2026-02-04 10:35:56] [INFO] Usuario admin listó 4 tickets
+[2026-02-04 10:35:59] [INFO] Usuario admin listó 4 tickets
+[2026-02-04 10:35:59] [INFO] Usuario admin listó 4 tickets
+[2026-02-04 10:36:02] [INFO] Usuario admin listó 4 tickets
+[2026-02-04 10:36:02] [INFO] Usuario admin listó 4 tickets
+[2026-02-04 10:36:05] [INFO] Usuario admin listó 4 tickets
+[2026-02-04 10:36:05] [INFO] Usuario admin listó 4 tickets
+[2026-02-04 10:36:08] [INFO] Usuario admin listó 4 tickets
+[2026-02-04 10:36:08] [INFO] Usuario admin listó 4 tickets
+[2026-02-04 10:36:11] [INFO] Usuario admin listó 4 tickets
+[2026-02-04 10:36:11] [INFO] Usuario admin listó 4 tickets
+[2026-02-04 10:36:13] [ERROR] Error inesperado procesando peticion de 127.0.0.1 - Connection reset
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1089)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.peek(ObjectInputStream.java:2878)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peek(ObjectInputStream.java:3205)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peekByte(ObjectInputStream.java:3215)
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1698)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:525)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:483)
+	at server.core.ClientHandler.run(ClientHandler.java:46)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+[2026-02-04 10:36:13] [INFO] Cerrando conexión para usuario: admin
+[2026-02-04 10:36:14] [INFO] Usuario admin listó 4 tickets
+[2026-02-04 10:36:14] [ERROR] Error inesperado procesando peticion de 127.0.0.1 - Connection reset
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1089)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.peek(ObjectInputStream.java:2878)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peek(ObjectInputStream.java:3205)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peekByte(ObjectInputStream.java:3215)
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1698)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:525)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:483)
+	at server.core.ClientHandler.run(ClientHandler.java:46)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+[2026-02-04 10:36:14] [INFO] Cerrando conexión para usuario: admin
+[2026-02-04 10:38:23] [INFO] Señal de apagado recibida. Guardando datos...
+[2026-02-04 10:38:23] [INFO] Cerrando pool de hilos...
+[2026-02-04 10:38:23] [INFO] === Servidor detenido ===
+[2026-02-04 10:38:31] [INFO] === Servidor iniciado ===
+[2026-02-04 10:38:31] [INFO] Iniciando servidor en puerto 9000...
+[2026-02-04 10:38:31] [INFO] DataStore inicializado
+[2026-02-04 10:38:31] [INFO] Servidor escuchando en puerto 9000
+[2026-02-04 10:38:46] [INFO] Nueva conexión desde: 127.0.0.1
+[2026-02-04 10:38:46] [INFO] Cliente conectado: 127.0.0.1
+[2026-02-04 10:38:46] [INFO] Intento de login: usuario1 desde 127.0.0.1
+[2026-02-04 10:38:46] [WARNING] Login fallido para usuario: usuario1 desde 127.0.0.1
+[2026-02-04 10:38:52] [ERROR] Error inesperado procesando peticion de 127.0.0.1 - Connection reset
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1089)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.peek(ObjectInputStream.java:2878)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peek(ObjectInputStream.java:3205)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peekByte(ObjectInputStream.java:3215)
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1698)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:525)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:483)
+	at server.core.ClientHandler.run(ClientHandler.java:46)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+[2026-02-04 10:38:52] [INFO] Cerrando conexión desde: 127.0.0.1
+[2026-02-04 10:39:15] [INFO] Señal de apagado recibida. Guardando datos...
+[2026-02-04 10:39:15] [INFO] Cerrando pool de hilos...
+[2026-02-04 10:39:15] [INFO] === Servidor detenido ===
+[2026-02-04 10:40:32] [INFO] === Servidor iniciado ===
+[2026-02-04 10:40:32] [INFO] Iniciando servidor en puerto 9000...
+[2026-02-04 10:40:32] [INFO] DataStore inicializado
+[2026-02-04 10:40:32] [INFO] Servidor escuchando en puerto 9000
+[2026-02-04 10:40:45] [INFO] Nueva conexión desde: 127.0.0.1
+[2026-02-04 10:40:45] [INFO] Cliente conectado: 127.0.0.1
+[2026-02-04 10:40:45] [INFO] Intento de login: usuario1 desde 127.0.0.1
+[2026-02-04 10:40:45] [INFO] Login exitoso: usuario1 (USER)
+[2026-02-04 10:40:45] [INFO] Usuario usuario1 listó 4 tickets
+[2026-02-04 10:40:48] [INFO] Usuario usuario1 listó 4 tickets
+[2026-02-04 10:40:51] [INFO] Usuario usuario1 listó 4 tickets
+[2026-02-04 10:40:54] [INFO] Usuario usuario1 listó 4 tickets
+[2026-02-04 10:40:57] [INFO] Usuario usuario1 listó 4 tickets
+[2026-02-04 10:40:59] [ERROR] Error inesperado procesando peticion de 127.0.0.1 - Connection reset
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:318)
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:346)
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:796)
+	at java.base/java.net.Socket$SocketInputStream.implRead(Socket.java:1108)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1095)
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:1089)
+	at java.base/java.io.ObjectInputStream$PeekInputStream.peek(ObjectInputStream.java:2878)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peek(ObjectInputStream.java:3205)
+	at java.base/java.io.ObjectInputStream$BlockDataInputStream.peekByte(ObjectInputStream.java:3215)
+	at java.base/java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1698)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:525)
+	at java.base/java.io.ObjectInputStream.readObject(ObjectInputStream.java:483)
+	at server.core.ClientHandler.run(ClientHandler.java:46)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+[2026-02-04 10:40:59] [INFO] Cerrando conexión para usuario: usuario1
