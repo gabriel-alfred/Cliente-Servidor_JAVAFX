@@ -1,16 +1,30 @@
+# Build & Target output
 target/
+bin/
 *.class
+
+# Server Runtime Data & Logs (Do not commit binary data or logs)
+*.log
+*.dat
+server_data.dat
+server.log
+
+# IDE & Editor files
 .idea/
 *.iml
 .settings/
 .classpath
 .project
-*.log
-*.dat
-bin/
 .vscode/
+.nb-gradle/
+
+# Local Configuration
+config.properties
+
+# OS / Temporary files
 *.swp
 *.bak
 *~
 .DS_Store
 Thumbs.db
+
