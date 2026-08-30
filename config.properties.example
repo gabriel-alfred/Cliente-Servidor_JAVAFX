@@ -1,0 +1,17 @@
+# ===================================================================
+# AetherDesk Configuration Template
+# Copy or rename this file to 'config.properties' to customize settings.
+# Environment variables will override values set in this file.
+# ===================================================================
+
+# Server Network Settings
+server.port=9000
+
+# Initial Administrative Account
+# Set custom admin credentials here or via environment variables:
+# AETHER_ADMIN_USER and AETHER_ADMIN_PASS
+admin.username=admin
+admin.password=ChangeMe123!
+
+# Seed demo operator accounts on first run (true / false)
+seed.demo.users=true

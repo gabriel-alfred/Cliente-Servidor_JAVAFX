@@ -62,13 +62,18 @@ public class DataStore {
     }
     
     /**
-     * Ensure default users always exist
+     * Ensure default users always exist based on configuration
      */
     private void ensureDefaultUsers() {
-        addIfMissing(new User("admin", "admin", "ADMIN"));
-        addIfMissing(new User("usuario1", "usuario1", "USER"));
-        addIfMissing(new User("usuario2", "usuario2", "USER"));
-        addIfMissing(new User("usuario3", "usuario3", "USER"));
+        String adminUser = server.config.ServerConfig.getAdminUsername();
+        String adminPass = server.config.ServerConfig.getAdminPassword();
+        addIfMissing(new User(adminUser, adminPass, "ADMIN"));
+
+        if (server.config.ServerConfig.isSeedDemoUsersEnabled()) {
+            addIfMissing(new User("usuario1", "usuario1", "USER"));
+            addIfMissing(new User("usuario2", "usuario2", "USER"));
+            addIfMissing(new User("usuario3", "usuario3", "USER"));
+        }
         saveData();
     }
     
