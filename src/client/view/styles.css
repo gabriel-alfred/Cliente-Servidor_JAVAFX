@@ -1,176 +1,241 @@
-/* LUMINADESK VIBRANT THEME */
+/* ============================================================
+   AETHERDESK - BRUTALIST MONOCHROME THEME (JavaFX)
+   ============================================================ */
 
 .root {
-    -fx-base: #f8f9fa;
-    -fx-background: #f8f9fa;
-    -fx-control-inner-background: #ffffff;
-    -fx-accent: #3b82f6;
+    -fx-base: #000000;
+    -fx-background: #000000;
+    -fx-control-inner-background: #000000;
+    -fx-accent: #ffffff;
+    -fx-focus-color: #ffffff;
+    -fx-faint-focus-color: transparent;
 
-    /* Colores */
-    -color-bg: #f8f9fa;
-    -color-surface: #ffffff;
-    -color-text: #1e293b;
-    -color-text-muted: #64748b;
-    -color-border: #e2e8f0;
+    /* Theme Tokens */
+    -color-bg: #000000;
+    -color-surface: #050505;
+    -color-surface-hover: #111111;
+    -color-text: #ffffff;
+    -color-text-muted: #888888;
+    -color-border: #222222;
+    -color-border-hi: #ffffff;
 
-    /* Botones */
-    -color-primary: #3b82f6;
-    -color-primary-hover: #2563eb;
-    -color-success: #10b981;
-    -color-warning: #f59e0b;
-    -color-danger: #ef4444;
+    /* Actions */
+    -color-primary: #ffffff;
+    -color-success: #ffffff;
+    -color-danger: #ff4444;
 }
 
-/* General Text */
+/* Base Typography */
 .label {
     -fx-text-fill: -color-text;
-    -fx-font-family: "Segoe UI", system, sans-serif;
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 12px;
 }
 
+/* Inputs, TextFields, TextAreas */
 .text-field,
 .password-field,
 .text-area {
-    -fx-background-color: -color-surface;
-    -fx-text-fill: -color-text;
-    -fx-prompt-text-fill: -color-text-muted;
-    -fx-background-radius: 6;
-    -fx-border-radius: 6;
-    -fx-border-color: -color-border;
-    -fx-padding: 8;
-    -fx-font-size: 13;
+    -fx-background-color: #050505;
+    -fx-text-fill: #ffffff;
+    -fx-prompt-text-fill: #555555;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-color: #333333;
+    -fx-border-width: 1;
+    -fx-padding: 8 10;
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 12px;
 }
 
 .text-field:focused,
 .password-field:focused,
 .text-area:focused {
-    -fx-border-color: -color-primary;
-    -fx-effect: dropshadow(three-pass-box, rgba(59, 130, 246, 0.2), 5, 0, 0, 0);
+    -fx-border-color: #ffffff;
+    -fx-background-color: #0a0a0a;
+}
+
+/* ComboBox */
+.combo-box {
+    -fx-background-color: #050505;
+    -fx-border-color: #333333;
+    -fx-border-width: 1;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-padding: 4 8;
+}
+.combo-box:focused {
+    -fx-border-color: #ffffff;
+}
+.combo-box .list-cell {
+    -fx-background-color: #050505;
+    -fx-text-fill: #ffffff;
+    -fx-font-family: "Courier New", monospace;
+}
+.combo-box .list-cell:hover {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
 }
 
 /* Buttons */
 .button {
-    -fx-background-radius: 6;
-    -fx-padding: 8 16;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 1;
+    -fx-padding: 8 14;
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 11px;
     -fx-font-weight: bold;
     -fx-cursor: hand;
-    -fx-text-fill: white;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 3, 0, 0, 1);
+    -fx-background-color: #000000;
+    -fx-text-fill: #ffffff;
+    -fx-effect: null;
 }
 
 .button:hover {
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 5, 0, 0, 2);
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
+    -fx-effect: null;
 }
 
 .btn-primary {
-    -fx-background-color: linear-gradient(to right, #3b82f6, #2563eb);
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
+    -fx-border-color: #ffffff;
+}
+.btn-primary:hover {
+    -fx-background-color: #000000;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #ffffff;
 }
 
 .btn-success {
-    -fx-background-color: linear-gradient(to right, #10b981, #059669);
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
+    -fx-border-color: #ffffff;
+}
+.btn-success:hover {
+    -fx-background-color: #000000;
+    -fx-text-fill: #ffffff;
 }
 
 .btn-secondary {
-    -fx-background-color: linear-gradient(to right, #64748b, #475569);
+    -fx-background-color: #000000;
+    -fx-text-fill: #888888;
+    -fx-border-color: #333333;
+}
+.btn-secondary:hover {
+    -fx-background-color: #111111;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #ffffff;
 }
 
 .btn-danger {
-    -fx-background-color: linear-gradient(to right, #ef4444, #dc2626);
+    -fx-background-color: #000000;
+    -fx-text-fill: #ff4444;
+    -fx-border-color: #ff4444;
+}
+.btn-danger:hover {
+    -fx-background-color: #ff4444;
+    -fx-text-fill: #000000;
 }
 
-/* Headers */
+/* Header Bar */
 .header-bar {
-    -fx-background-color: white;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.05), 10, 0, 0, 2);
-    -fx-border-color: transparent transparent -color-border transparent;
+    -fx-background-color: #000000;
+    -fx-border-color: transparent transparent #222222 transparent;
+    -fx-border-width: 1;
+    -fx-effect: null;
 }
 
 .app-title {
-    -fx-font-size: 24;
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
-    -fx-text-fill: -color-primary;
+    -fx-text-fill: #ffffff;
 }
 
-/* Login Card */
+/* Login Container & Card */
 .login-container {
-    -fx-background-color: linear-gradient(to bottom right, #f0f9ff, #e0f2fe);
+    -fx-background-color: #000000;
 }
 
 .login-card {
-    -fx-background-color: white;
-    -fx-background-radius: 12;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 20, 0, 0, 10);
-    -fx-padding: 40;
+    -fx-background-color: #050505;
+    -fx-border-color: #333333;
+    -fx-border-width: 1;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-effect: null;
+    -fx-padding: 35;
 }
 
 .login-title {
-    -fx-font-size: 28;
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 24px;
     -fx-font-weight: bold;
-    -fx-text-fill: #0f172a;
+    -fx-text-fill: #ffffff;
 }
 
 /* TableView */
 .table-view {
-    -fx-background-color: white;
-    -fx-border-color: -color-border;
-    -fx-border-radius: 6;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.05), 5, 0, 0, 2);
+    -fx-background-color: #000000;
+    -fx-border-color: #222222;
+    -fx-border-width: 1;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-effect: null;
 }
 
 .table-view .column-header-background {
-    -fx-background-color: #f1f5f9;
-    -fx-border-color: transparent transparent -color-border transparent;
+    -fx-background-color: #0a0a0a;
+    -fx-border-color: transparent transparent #222222 transparent;
+    -fx-border-width: 1;
 }
 
 .table-view .column-header .label {
-    -fx-text-fill: #475569;
+    -fx-text-fill: #888888;
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 11px;
     -fx-font-weight: bold;
 }
 
-/* Dynamic Row Colors (Visible Text) */
 .table-row-cell {
-    -fx-border-color: transparent transparent #f1f5f9 transparent;
+    -fx-background-color: #000000;
+    -fx-border-color: transparent transparent #161616 transparent;
+    -fx-border-width: 1;
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 11px;
 }
 
+.table-row-cell:odd {
+    -fx-background-color: #050505;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: #ffffff;
+}
+
+/* Status Rows */
 .status-open {
-    -fx-background-color: #ecfdf5;
-    /* Light Emerald */
+    -fx-background-color: #000000;
 }
-
-.status-open:selected {
-    -fx-background-color: #d1fae5;
+.status-open .text {
+    -fx-fill: #ffffff;
 }
 
 .status-progress {
-    -fx-background-color: #fffbeb;
-    /* Light Amber */
+    -fx-background-color: #080808;
 }
-
-.status-progress:selected {
-    -fx-background-color: #fef3c7;
+.status-progress .text {
+    -fx-fill: #cccccc;
 }
 
 .status-closed {
-    -fx-background-color: #fef2f2;
-    /* Light Red */
+    -fx-background-color: #040404;
 }
-
-.status-closed:selected {
-    -fx-background-color: #fee2e2;
+.status-closed .text {
+    -fx-fill: #666666;
 }
-
-/* Status Labels specific styling */
-.table-row-cell.status-open .text {
-    -fx-fill: #065f46;
-}
-
-/* Dark Green text */
-.table-row-cell.status-progress .text {
-    -fx-fill: #92400e;
-}
-
-/* Dark Amber text */
-.table-row-cell.status-closed .text {
-    -fx-fill: #991b1b;
-}
-
-/* Dark Red text */

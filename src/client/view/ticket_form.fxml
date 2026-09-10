@@ -10,36 +10,36 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0" spacing="25.0" styleClass="login-card" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.TicketFormController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="520.0" spacing="20.0" styleClass="login-card" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controller.TicketFormController">
    <children>
       <VBox spacing="5.0">
          <children>
-            <Label fx:id="titleLabel" text="CREAR NUEVO TICKET" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: -color-primary;" />
-            <Label text="Completa la información detallada del ticket" style="-fx-text-fill: -color-text-muted;" />
+            <Label fx:id="titleLabel" text="// REGISTRO DE INCIDENCIA" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #ffffff;" />
+            <Label text="Introduce los detalles técnicos de la solicitud" style="-fx-text-fill: #888888; -fx-font-size: 11px;" />
          </children>
       </VBox>
-      <VBox spacing="8.0">
+      <VBox spacing="6.0">
          <children>
-            <Label text="Título del Problema" style="-fx-font-weight: bold;" />
-            <TextField fx:id="titleField" promptText="Ej: Error en acceso a base de datos" maxWidth="Infinity" />
+            <Label text="// TITULO DE LA INCIDENCIA" style="-fx-font-weight: bold; -fx-font-size: 10px; -fx-text-fill: #888888;" />
+            <TextField fx:id="titleField" promptText="Ej: Fallo en pasarela de autenticacion..." maxWidth="Infinity" />
          </children>
       </VBox>
-      <VBox spacing="8.0" VBox.vgrow="ALWAYS">
+      <VBox spacing="6.0" VBox.vgrow="ALWAYS">
          <children>
-            <Label text="Descripción detallada" style="-fx-font-weight: bold;" />
-            <TextArea fx:id="descField" prefHeight="150.0" promptText="Describe paso a paso el problema encontrado..." wrapText="true" VBox.vgrow="ALWAYS" />
+            <Label text="// DESCRIPCION DETALLADA" style="-fx-font-weight: bold; -fx-font-size: 10px; -fx-text-fill: #888888;" />
+            <TextArea fx:id="descField" prefHeight="140.0" promptText="Describe paso a paso el problema encontrado..." wrapText="true" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
-      <VBox fx:id="statusContainer" spacing="8.0" visible="false" managed="false">
+      <VBox fx:id="statusContainer" spacing="6.0" visible="false" managed="false">
          <children>
-            <Label text="Estado de Resolución" style="-fx-font-weight: bold;" />
+            <Label text="// ESTADO DE RESOLUCION" style="-fx-font-weight: bold; -fx-font-size: 10px; -fx-text-fill: #888888;" />
             <ComboBox fx:id="statusCombo" maxWidth="Infinity" />
          </children>
       </VBox>
-      <HBox alignment="CENTER_RIGHT" spacing="15.0">
+      <HBox alignment="CENTER_RIGHT" spacing="12.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#handleCancel" text="Cancelar" minWidth="100.0" />
-            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#handleSave" styleClass="btn-primary" text="GUARDAR CAMBIOS" minWidth="150.0" />
+            <Button mnemonicParsing="false" onAction="#handleCancel" styleClass="btn-secondary" text="[CANCELAR]" minWidth="100.0" />
+            <Button fx:id="saveButton" mnemonicParsing="false" onAction="#handleSave" styleClass="btn-primary" text="[GUARDAR TICKET →]" minWidth="160.0" />
          </children>
       </HBox>
    </children>
